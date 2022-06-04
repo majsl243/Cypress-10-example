@@ -2,19 +2,25 @@ import CommonHelper from '../support/commonHelper.js'
 
 const SELECTORS = {
     specsContainerDiv: ".hubble-product__content-inner",    
-    exchangeDiv: "#trade-in",
+    exchange: "#trade-in",
     productOptionsWrap: "hubble-product__options-wrap",
-    deviceDiv: ".s-option-device",
-    storageDiv: ".s-option-storage",
-    colorDiv: ".s-option-color-special",
+    device: ".s-option-device",
+    storage: ".s-option-storage",
+    color: ".s-option-color-special",
     checkoutBtn: ".add-to-cart-btn"
     }
     
+  const selectionSpecs = ["exchange", "device", "storage", "color", "samsungCare"]
+
     const commonHelper = new CommonHelper()
  
     class ProductView {
-      fillProductSpecs () {
-        this.selectSpec(`${SELECTORS.specsContainerDiv} ${SELECTORS.exchangeDiv}`, "No, thanks")
+      fillProductSpecs (specs) {
+        Object.keys(specs).forEach((key) => {
+          if (selectionSpecs.includes(key)) {
+            this.selectSpec(`${SELECTORS.specsContainerDiv} ${SELECTORS[key]}`, specs[key])
+          }
+        })
     
         this.proceedToCheckout()
       }
@@ -29,4 +35,3 @@ const SELECTORS = {
     }
     
     export default ProductView
-

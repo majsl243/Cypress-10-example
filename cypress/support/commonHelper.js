@@ -23,7 +23,7 @@ const SELECTORS = {
       }
 
       selectField(field) {
-        this.clickOnField('[data-vv-as="First Name"]')
+        this.clickOnField(field)
       }
 
       unSelectField() {
